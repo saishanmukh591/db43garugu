@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - var results = [{"part_name":"back case", "part_number":1,"size":1,"cost":20},{"part_name":"lid", "part_number":2,"size":4,"cost":25},{"part_name":"outer cover", "part_number":3,"size":4,"cost":15}]
+  - let results = thePart
   div(class="container-fuild")
     div(class="row")
       each result,index in results
