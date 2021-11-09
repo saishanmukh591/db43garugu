@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var partsRouter = require('./routes/parts');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
-
+var Part = require("./models/part");
 
 
 var app = express();
@@ -47,5 +47,33 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const connectionString = process.env.MONGO_CON
+
+mongoose = require('mongoose');
+mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+ // Delete everything
+ await Part.deleteMany();
+
+
+ var results = [{"part_name":"back case","size":'1',"cost":20},
+                {"part_name":"lid","size":'4',"cost":25},
+                {"part_name":"outer cover", "size":'4',"cost":15}]
+
+for(i in results){
+  let instance = new  Part({part_name: results[i]["part_name"], size: results[i]["size"], cost:results[i]["cost"]});
+  instance.save( function(err,doc) {
+    if(err) return console.error(err);
+    console.log("object added.")
+    });
+}
+
+}
+
+let reseed = true;
+if (reseed) { recreateDB();}
 
 module.exports = app;
