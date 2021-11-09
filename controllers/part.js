@@ -1,8 +1,16 @@
 var Part = require('../models/part');
 // List of all Part
-exports.part_list = function(req, res) {
- res.send('NOT IMPLEMENTED: Part list');
-};
+exports.part_list = async function(req, res) {
+    try{
+    thePart = await Part.find();
+    res.send(thePart);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    } 
+   };
+
 // for a specific Part.
 exports.part_detail = function(req, res) {
  res.send('NOT IMPLEMENTED: part detail: ' + req.params.id);

@@ -15,7 +15,7 @@ router.delete('/parts/:id', part_controller.part_delete);
 router.put('/parts/:id', 
 part_controller.part_update_put);
 // GET request for one Part.
-router.get('/costumes/:id', part_controller.part_detail);
+router.get('/parts/:id', part_controller.part_detail);
 
 // GET request for list of all Part items.
 router.get('/parts', part_controller.part_list);
