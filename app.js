@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var partsRouter = require('./routes/parts');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
+
 var Part = require("./models/part");
 
 
@@ -29,6 +31,8 @@ app.use('/users', usersRouter);
 app.use('/parts', partsRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
+
 
 
 
