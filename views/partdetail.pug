@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to show
+  else
+  - let partid = toShow._id
+  - let partName = toShow.part_name
+  - let partSize = toShow.size
+  - let partCost = toShow.cost
+  form(id='partform',action= actionid, method= 'GET' )
+  div
+    div.row
+      div(class='partAttr mr-3') Part Id is:
+      div #{partid}
+    div.row
+      div(class='partAttr mr-3') Part Name is:
+      div #{partName}
+    div.row
+      div(class='partAttr mr-3') Part Size is:
+      div #{partSize}
+    div.row
+      div(class='partAttr mr-3') Part Cost is:
+      div #{partCost}

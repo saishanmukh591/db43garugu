@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1= title
+
+  form(id='PartForm', action="/resource/parts", method="POST")
+    div.form-group
+        label.partLabel(for='partname') Part Name
+        input#partname(type='text', name='name')
+    div.form-group
+        label.partLabel(for='size') Part Cost
+        input#size(type='number', name='size')
+    div.form-group
+        label.partLabel(for='cost') Part Weight
+        input#cost(type='number', name='cost')
+    input.button(type="submit")
+
+  script.
+    document.forms['PartForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        document.getElementById("errors").style.display="block"
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        if(body.name){
+          document.getElementById("errors").innerHTML=`${body.name}  \n ${body.message}\n`;
+          alert("Save Failed")
+        }else{
+           alert("Save succeded")
+        }
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        //- document.getElementById("errors").style.display="block"
+        //- document.getElementById("errors").innerHTML="hello";
+        alert("Save failed " + error)
+      });
