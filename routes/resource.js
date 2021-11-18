@@ -20,7 +20,4 @@ router.get('/parts/:id', part_controller.part_detail);
 // GET request for list of all Part items.
 router.get('/parts', part_controller.part_list);
 
-/* GET detail part page */
-router.get('/detail', part_controller.part_view_one_Page);
-
 module.exports = router;

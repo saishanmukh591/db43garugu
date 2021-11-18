@@ -7,39 +7,41 @@ block content
   - let partName = toShow.part_name
   - let partSize = toShow.size
   - let partCost = toShow.cost
-  
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{partid}
-  - let actionid = "/resource/parts/" + partid
-  form(id='PartForm', action= actionid, method="GET")
-    div.form-group
-        label.partAttr(for='partname') Part Name
-        input#partname(type='text', name='Name', value= Name )
-    div.form-group
-        label.partAttr(for='size') Part Cost
-        input#size(type='number', name='size', value= Size )
-    div.form-group
-        label.partAttr(for='cost') Part Weight
-        input#cost(type='number', name='cost', value= Cost )
-    input(type="submit")
+  if (toShow == null)
+    h2 No instance to show
+  else
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{partid}
+    - let actionid = "/resource/parts/" + partid
+    form(id='PartForm', action= actionid, method="PUT")
+      div.form-group
+          label.partAttr(for='partname') Part Name
+          input.partsInput#partname(type='text', name='Name', value= Name )
+      div.form-group
+          label.partAttr(for='size') Part Cost
+          input.partsInput#size(type='number', name='size', value= Size )
+      div.form-group
+          label.partAttr(for='cost') Part Weight
+          input.partsInput#cost(type='number', name='cost', value= Cost )
+      button(class="btn btn-primary m-2") Update
 
-  script.
-    document.forms['PartForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        //resp = "sample";
-        console.log("sample")
-        alert("Update failed " + error )
+    script.
+      document.forms['PartForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeded")
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          //resp = "sample";
+          console.log("sample")
+          alert("Update failed " + error )
+        });
       });
-    });

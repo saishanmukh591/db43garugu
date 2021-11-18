@@ -4,11 +4,14 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: black;
 }
 
 .partAttr {
-  background-color: aquamarine;
-  color: blue;
+  width: 120px;
+  }
+
+.partsInput {
+  background-color: #F0F0F0;
   width: 120px;
   }
