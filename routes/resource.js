@@ -20,21 +20,7 @@ router.get('/parts/:id', part_controller.part_detail);
 // GET request for list of all Part items.
 router.get('/parts', part_controller.part_list);
 
-const secured = (req, res, next) => {
-    if (req.user) {
-        return next();
-    }
-    req.session.returnTo = req.originalUrl;
-    res.redirect("/login");
-}
-
 /* GET detail part page */
-router.get('/detail', secured , part_controller.part_view_one_Page);
-/* GET create part page */
-router.get('/create', secured , part_controller.part_create_Page);
-/* GET create update page */
-router.get('/update', secured , part_controller.part_update_Page);
-/* GET create part page */
-router.get('/delete', secured , part_controller.part_delete_Page);
+router.get('/detail', part_controller.part_view_one_Page);
 
 module.exports = router;
