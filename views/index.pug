@@ -1,16 +1,13 @@
 extends layout
 
-
 block content
-  h1= title
-  p Web apps assignment 10
-  button(Type="button", class="btn btn-primary btn-md" onclick="update()") Press me
-  div(id="target") Display
-  a(Type="button", href="/parts") link to parts
+ if (!user)
+  a(href="/login") Login
+  br
+  a(href="/register") Register
+ if (user)
+  p You are currently logged in as #{user.username}
+  a(href="/parts") Take me to parts
+  br
+  a(href="/logout") Logout
 
-  script.  
-    let  client_count = 0;
-    function update() {
-      client_count +=1;
-      document.getElementById("target").innerHTML = client_count;
-    }
