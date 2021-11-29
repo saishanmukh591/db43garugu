@@ -113,7 +113,7 @@ for(i in results){
 
 }
 
-let reseed = false;
+let reseed = true;
 if (reseed) { recreateDB();}
 
 module.exports = app;

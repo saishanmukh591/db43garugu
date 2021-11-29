@@ -17,10 +17,10 @@ block content
     form(id='PartForm', action= actionid, method="PUT")
       div.form-group
           label.partAttr(for='partname') Part Name
-          input.partsInput#partname(type='text', name='Name', value= Name )
+          input.partsInput#partname(type='text', name='name', value= Name )
       div.form-group
           label.partAttr(for='size') Part Size
-          input.partsInput#size(type='number', name='size', value= Size )
+          input.partsInput#size(type='text', name='size', value= Size )
       div.form-group
           label.partAttr(for='cost') Part Cost
           input.partsInput#cost(type='number', name='cost', value= Cost )
@@ -40,7 +40,6 @@ block content
           // TODO handle body
         }).catch((error) => {
           // TODO handle error
-          //resp = "sample";
           console.log("sample")
           alert("Update failed " + error )
         });

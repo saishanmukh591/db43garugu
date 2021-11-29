@@ -49,14 +49,14 @@ exports.part_update_put = async function(req, res) {
      try {
      let toUpdate = await Part.findById( req.params.id)
      // Do updates of properties
-     console.log(req.params.id)
-     if(req.body.part_name)  toUpdate.part_name = req.body.part_name;
+    if(req.body.name)  toUpdate.part_name = req.body.name;
      if(req.body.cost) toUpdate.cost = req.body.cost;
      if(req.body.size) toUpdate.size = req.body.size;
      let result = await toUpdate.save();
      console.log("Sucess " + result)
      res.send(result)
      } catch (err) {
+         console.log(err)
      res.status(500)
      res.send(`{"error": ${err}: Update for id ${req.params.id} 
     failed`);
