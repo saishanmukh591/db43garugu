@@ -2,16 +2,15 @@ extends layout
 
 block content
   h1= title
-  - let results = thePart
-  div(class="container-fuild")
-    div(class="row")
-      each result,index in results
-        div(class = "col-sm-2" id=index onclick=`buy(${index})`) 
-          p #{result.part_name}
-          p #{result.size}
-          p #{result.cost}
-
+  - let parts=results
+  div(class="container-fluid")
+    div(class="row m-1")
+      each part in parts
+        - let destination = `dispatch(\"/parts/update?id=${part._id}\")`
+        div(class="col-sm-2 "  class="m-1")  #{part.part_name} - #{part.size} - #{part.cost}
+          button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= destination) Update
   script.
-    function buy(element){
-      alert(`You purchased item ${element+1}.`)
-    }
+      function dispatch(path)
+      {
+      window.location.href=path
+      }
