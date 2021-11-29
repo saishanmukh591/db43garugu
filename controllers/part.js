@@ -1,4 +1,7 @@
 var Part = require('../models/part');
+
+
+
 // List of all Part
 exports.part_list = async function(req, res) {
     try{
