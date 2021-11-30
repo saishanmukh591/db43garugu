@@ -2,12 +2,12 @@ const mongoose = require("mongoose")
 const partSchema = mongoose.Schema({
     part_name: {
         type: String,
-        required: true
+        required: [true, "part name can not be blank"],
     },
 
     size: {
         type: String,
-        required: [true, "part size can not be blank"],
+        required: [true, "part size can not be blank"] ,
     },
 
     cost: {

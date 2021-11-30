@@ -4,11 +4,18 @@ block content
   h1= title
   - let parts=results
   div(class="container-fluid")
+    - let create = `dispatch("/parts/create")`
+    button.btn( class="btn-secondary"  class="m-1" class="btn-toolbar", onclick= create) Create
     div(class="row m-1")
       each part in parts
         - let destination = `dispatch(\"/parts/update?id=${part._id}\")`
+        - let delete_ = `dispatch(\"/parts/delete?id=${part._id}\")`
+        - let info = `dispatch(\"/parts/detail?id=${part._id}\")`
         div(class="col-sm-2 "  class="m-1")  #{part.part_name} - #{part.size} - #{part.cost}
           button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= destination) Update
+          button.btn( class="btn-danger"  class="m-1" class="btn-toolbar", onclick= delete_) Delete
+          button.btn( class="btn-info"  class="m-1" class="btn-toolbar", onclick= info) Detail
+    
   script.
       function dispatch(path)
       {
